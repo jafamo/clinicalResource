@@ -1,0 +1,41 @@
+services:
+  php:
+    build:
+      context: docker/php
+      dockerfile: Dockerfile
+    container_name: clinical-app
+    volumes:
+      - ./symfony:/var/www/symfony
+    ports:
+      - "9011:9011"
+    environment:
+      - SYMFONY_CLI_VERSION=${SYMFONY_CLI_VERSION}
+
+  mariadb:
+    image: mariadb:${MARIADB_VERSION}
+    container_name: clinical-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: clinicalMedical
+      MYSQL_USER: clinicMedical
+      MYSQL_PASSWORD: MedicalClinic01
+    ports:
+      - "3311:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./docker/mysql/logs/:/var/log/mysql
+
+  nginx:
+    image: nginx:alpine
+    container_name: clinical-nginx
+    volumes:
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./${PROJECT_NAME}/public:/var/www/symfony/public
+      - ./docker/nginx/logs/nginx:/var/log/nginx
+    ports:
+      - "9015:80"
+    depends_on:
+      - php
+
+volumes:
+  db_data:

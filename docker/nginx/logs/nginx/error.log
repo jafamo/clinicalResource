@@ -1,0 +1,14 @@
+2024/12/20 12:41:30 [emerg] 1#1: host not found in upstream "php-container" in /etc/nginx/conf.d/default.conf:15
+2024/12/20 12:42:42 [emerg] 1#1: host not found in upstream "php-container" in /etc/nginx/conf.d/default.conf:15
+2024/12/20 12:45:41 [emerg] 1#1: host not found in upstream "php-container" in /etc/nginx/conf.d/default.conf:15
+2024/12/20 12:47:29 [emerg] 1#1: host not found in upstream "php-container" in /etc/nginx/conf.d/default.conf:15
+2024/12/20 12:47:56 [notice] 1#1: using the "epoll" event method
+2024/12/20 12:47:56 [notice] 1#1: nginx/1.27.3
+2024/12/20 12:47:56 [notice] 1#1: built by gcc 13.2.1 20240309 (Alpine 13.2.1_git20240309) 
+2024/12/20 12:47:56 [notice] 1#1: OS: Linux 6.8.0-51-generic
+2024/12/20 12:47:56 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2024/12/20 12:47:56 [notice] 1#1: start worker processes
+2024/12/20 12:47:56 [notice] 1#1: start worker process 29
+2024/12/20 12:47:56 [notice] 1#1: start worker process 30
+2024/12/20 12:47:56 [notice] 1#1: start worker process 31
+2024/12/20 12:47:56 [notice] 1#1: start worker process 32
