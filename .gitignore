@@ -1,2 +1,7 @@
 /docker/nginx/logs/nginx/
 /docker/mysql/logs/mariadb/
+/docker/nginx/logs/
+/.composer/
+/.symfony5/
+/clinicalResource/vendor
+/.bash_history
