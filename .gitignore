@@ -1,9 +1,9 @@
-/docker/nginx/logs/nginx/
-/docker/mysql/logs/mariadb/
 /docker/nginx/logs/
+/docker/mysql/logs/mariadb/
 /.composer/
 /.symfony5/
 /clinicalResource/vendor
 /.bash_history
-docker/nginx/logs/nginx/access.log
-docker/nginx/logs/nginx/error.log
+/docker/nginx/logs/nginx/access.log
+/docker/nginx/logs/nginx/error.log
+/.gitconfig
