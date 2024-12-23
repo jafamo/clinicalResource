@@ -20,4 +20,4 @@ RUN curl -sS https://get.symfony.com/cli/installer | bash \
     && mv /root/.symfony*/bin/symfony /usr/local/bin/symfony
 
 # Crear el directorio de trabajo
-WORKDIR /var/www/symfony
+WORKDIR /var/www/clinicalResource
