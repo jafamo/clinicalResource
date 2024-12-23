@@ -5,3 +5,5 @@
 /.symfony5/
 /clinicalResource/vendor
 /.bash_history
+docker/nginx/logs/nginx/access.log
+docker/nginx/logs/nginx/error.log
