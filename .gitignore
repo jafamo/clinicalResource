@@ -50,3 +50,12 @@
 
 # Embedded web-server pid file
 /.web-server-pid
+/docker/nginx/logs/
+/docker/mysql/logs/mariadb/
+/.composer/
+/.symfony5/
+/clinicalResource/vendor
+/.bash_history
+/docker/nginx/logs/nginx/access.log
+/docker/nginx/logs/nginx/error.log
+/.gitconfig
