@@ -13,7 +13,6 @@ class LogoutController extends AbstractController
     #[Route('/api/logout', name: 'api_logout', methods: ['GET'])]
     public function logout()
     {
-        return new JsonResponse(['Logout'], Response::HTTP_OK);
         throw new \Exception('should not be reached');
     }
 
