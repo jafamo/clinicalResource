@@ -1,4 +1,4 @@
 api_platform:
-    resource: .
+    resource: ../../src/Controller/Api/
     type: api_platform
     prefix: /api
