@@ -60,3 +60,4 @@
 /docker/nginx/logs/nginx/error.log
 /.gitconfig
 /docker/nginx/logs/nginx/
+/.idea/dataSources.xml
