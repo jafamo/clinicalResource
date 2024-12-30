@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Controller\Web;
+namespace App\Infrastructure\Http\Web\Login;
 
-use App\Entity\User;
-use App\Form\RegistrationFormType;
-use App\Security\EmailVerifier;
+use App\Domain\Entity\User;
+use App\Infrastructure\Form\RegistrationFormType;
+use App\Infrastructure\Security\EmailVerifier;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Controller\Api;
+namespace App\Infrastructure\Http\Web\Login;
 
-use App\Entity\User;
-use \Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Attribute\Route;
