@@ -6,8 +6,8 @@
 
 api:
     resource:
-        path: ../src/Controller/Api/v1
-        namespace: App\Controller\Api\v1
+        path: ../src/Infrastructure/Http/Api/V1
+        namespace: App\Infrastructure\Http\Api\V1
         prefix: '/v1'
     type: attribute
 
@@ -18,3 +18,9 @@ api_login:
 api_logout:
     path: /api/logout
     methods: GET
+
+web:
+    resource:
+        path: ../src/Infrastructure/Http/Web
+        namespace: App\Infrastructure\Http\Web
+    type: attribute
