@@ -1,5 +1,5 @@
 api_platform:
-    title: clinicMedical
+    title: Hello API Platform
     version: 1.0.0
     defaults:
         stateless: true

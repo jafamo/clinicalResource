@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Infrastructure\Http\Api\V1;
+namespace App\Controller\Api\v1;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Routing\Attribute\Route;
+use \Symfony\Component\Routing\Attribute\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 #[Route('/api/v1/pruebas',  name: 'pruebas')]
