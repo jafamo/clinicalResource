@@ -18,3 +18,9 @@ api_login:
 api_logout:
     path: /api/logout
     methods: GET
+
+web:
+    resource:
+        path: ../src/Controller/Web
+        namespace: App\Controller\Web
+    type: attribute
