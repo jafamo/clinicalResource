@@ -11,6 +11,7 @@ services:
       - "9011:9011"
     environment:
       - SYMFONY_CLI_VERSION=${SYMFONY_CLI_VERSION}
+    restart: always
 
   mariadb:
     image: mariadb:${MARIADB_VERSION}
@@ -25,6 +26,7 @@ services:
     volumes:
       - db_data:/var/lib/mysql
       - ./docker/mysql/logs/:/var/log/mysql
+    restart: always
 
   nginx:
     image: nginx:alpine
@@ -37,6 +39,7 @@ services:
       - "9015:80"
     depends_on:
       - php
+    restart: always
 
 volumes:
   db_data:
