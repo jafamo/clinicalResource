@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-#[Route('/api/v1/pruebas',  name: 'pruebas')]
+#[Route('/api/v1/pruebas', name: 'pruebas')]
 class pruebasController extends AbstractController
 {
     #[Route('/javier')]
