@@ -5,7 +5,6 @@ namespace App\Infrastructure\Http\Web\Login;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Attribute\Route;
 
-
 class LogoutController extends AbstractController
 {
     #[Route('/api/logout', name: 'api_logout', methods: ['GET'])]
@@ -13,5 +12,4 @@ class LogoutController extends AbstractController
     {
         throw new \Exception('should not be reached');
     }
-
 }
