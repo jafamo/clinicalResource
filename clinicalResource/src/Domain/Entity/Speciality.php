@@ -28,9 +28,13 @@ class Speciality
     #[ORM\OneToMany(mappedBy: "parent", targetEntity: self::class)]
     private Collection $children;
 
+    #[ORM\ManyToMany(targetEntity: Doctor::class, mappedBy: 'specialities')]
+    private Collection $medicos;
+
     public function __construct()
     {
         $this->children = new ArrayCollection();
+        $this->medicos = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -90,5 +94,13 @@ class Speciality
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Doctor>
+     */
+    public function getMedicos(): Collection
+    {
+        return $this->medicos;
     }
 }
