@@ -36,6 +36,8 @@ class RegistrationController extends AbstractController
             // encode the plain password
             $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
 
+            //TODO: Validate if email exists before persists
+
             $entityManager->persist($user);
             $entityManager->flush();
 

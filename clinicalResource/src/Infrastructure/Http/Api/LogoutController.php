@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\Http\Web\Login;
+namespace App\Infrastructure\Http\Api;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Attribute\Route;
