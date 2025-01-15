@@ -1,3 +1,89 @@
 api_platform:
+  # The title of the API.
+  title: 'Medical Center'
+  server: "http://localhost:9015"
+
+  # The description of the API.
+  description: 'API about medical center'
+
+  # The version of the API.
+  version: '0.0.1'
+
+  # Set this to false if you want Webby to disappear.
+  show_webby: true
+
+  # Specify a name converter to use.
+  name_converter: ~
+
+  # Specify an asset package name to use.
+  asset_package: null
+
+  # Specify a path name generator to use.
+  path_segment_name_generator: 'api_platform.path_segment_name_generator.underscore'
+
+  validator:
+    # Enable the serialization of payload fields when a validation error is thrown.
+    # If you want to serialize only some payload fields, define them like this: [ severity, anotherPayloadField ]
+    serialize_payload_fields: [ ]
+
+    # To enable or disable query parameters validation on collection GET requests
+    query_parameter_validation: true
+
+  eager_loading:
+    # To enable or disable eager loading.
+    enabled: true
+
+    # Fetch only partial data according to serialization groups.
+    # If enabled, Doctrine ORM entities will not work as expected if any of the other fields are used.
+    fetch_partial: false
+
+    # Max number of joined relations before EagerLoading throws a RuntimeException.
+    max_joins: 30
+
+    # Force join on every relation.
+    # If disabled, it will only join relations having the EAGER fetch mode.
+    force_eager: true
+
+  # Enable the Swagger documentation and export.
+  enable_swagger: true
+
+  # Enable Swagger UI.
+  enable_swagger_ui: true
+
+  # Enable ReDoc.
+  enable_re_doc: true
+
+  # Enable the entrypoint.
+  enable_entrypoint: true
+
+  # Enable the docs.
+  enable_docs: true
+
+  # Enable the data collector and the WebProfilerBundle integration.
+  enable_profiler: true
+
+  collection:
+    # The name of the query parameter to filter nullable results (with the ExistsFilter).
+    exists_parameter_name: 'exists'
+
+    # The default order of results.
+    order: 'ASC'
+
+    # The name of the query parameter to order results (with the OrderFilter).
+    order_parameter_name: 'order'
+
+    pagination:
+      # The default name of the parameter handling the page number.
+      page_parameter_name: 'page'
+
+      # The name of the query parameter to enable or disable pagination.
+      enabled_parameter_name: 'pagination'
+
+      # The name of the query parameter to set the number of items per page.
+      items_per_page_parameter_name: 'itemsPerPage'
+
+      # The name of the query parameter to enable or disable the partial pagination.
+      partial_parameter_name: 'partial'
+
   mapping:
     paths: [ '%kernel.project_dir%/src/Domain/Entity' ]
