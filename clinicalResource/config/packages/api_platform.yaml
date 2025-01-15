@@ -1,7 +1,6 @@
 api_platform:
   # The title of the API.
   title: 'Medical Center'
-  server: "http://localhost:9015"
 
   # The description of the API.
   description: 'API about medical center'
