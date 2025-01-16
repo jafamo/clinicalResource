@@ -31,6 +31,10 @@ class LoginController extends AbstractController
     )]
     public function login(AuthenticationUtils $authenticationUtils)
     {
+        if ($this->getUser()) {
+            return $this->redirect('home');
+        }
+
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
 
@@ -53,7 +57,7 @@ class LoginController extends AbstractController
         $response = $security->logout();
 
         // you can also disable the csrf logout
-        $response = $security->logout(false);
+        $response = $security->logout(true);
 
         // configure a custom logout response to the homepage
         $response = new RedirectResponse(
