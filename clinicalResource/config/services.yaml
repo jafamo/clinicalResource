@@ -6,6 +6,7 @@
 parameters:
   app.base_url: 'http://localhost:9015'
   app.base_url_api: '%env(BASE_URL_API)%'
+  google_maps_api_key: '%env(GOOGLE_MAPS_API_KEY)%'
 
 
 services:

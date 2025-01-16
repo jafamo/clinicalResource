@@ -12,8 +12,6 @@ services:
     environment:
       - SYMFONY_CLI_VERSION=${SYMFONY_CLI_VERSION}
     restart: always
-    networks:
-      - angular_network
 
   mariadb:
     image: mariadb:${MARIADB_VERSION}
@@ -29,8 +27,6 @@ services:
       - db_data:/var/lib/mysql
       - ./docker/mysql/logs/:/var/log/mysql
     restart: always
-    networks:
-      - angular_network
 
   nginx:
     image: nginx:alpine
@@ -44,12 +40,6 @@ services:
     depends_on:
       - php
     restart: always
-    networks:
-      - angular_network
 
 volumes:
   db_data:
-
-networks:
-  angular_network:
-    external: true
