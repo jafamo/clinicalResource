@@ -26,4 +26,14 @@ return [
         'version' => '5.3.3',
         'type' => 'css',
     ],
+
+    'table_search' => [
+        'path' => './assets/js/table_search.js',
+        'entrypoint' => true,
+    ],
+    'mapa' => [
+        'path' => './assets/js/mapa.js',
+        'entrypoint' => true,
+    ],
+
 ];

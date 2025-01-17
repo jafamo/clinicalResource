@@ -23,6 +23,9 @@ console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
 // import './vendor/glightbox/js/glightbox.js';
 
 import './js/main.js';
+import './js/table_search.js';
+import './js/mapa.js';
+import './js/animacion_tooltip.js';
 
 
 // Assets CSS
@@ -32,5 +35,7 @@ import './vendor/aos/aos.css';
 import './vendor/glightbox/css/glightbox.css';
 import './vendor/swiper/swiper-bundle.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './css/main.css'
+import './css/main.css';
+import './css/search.css';
+import './css/animacion_tooltip.css';
 

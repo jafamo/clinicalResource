@@ -33,7 +33,9 @@
     {% endblock %}
 
     {% block javascripts %}
-        {% block importmap %}{{ importmap('app') }}{% endblock %}
+        {% block importmap %}
+            {{ importmap('app') }}
+        {% endblock %}
         <!-- Vendor JS Files -->
         {#          <script src="../../assets/js/main.js"></script> #}
     {% endblock %}
