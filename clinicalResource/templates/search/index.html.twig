@@ -1,0 +1,33 @@
+{% extends  'home/home.html.twig' %}
+
+{% block text %}
+    <div class="row">
+        <div class="col-sm-4 p-3 container h-100" style="padding-bottom: 1000px;">
+            <div class="d-flex justify-content-center h-100">
+                <div class="search">
+                    <input class="search_input" type="text" name="" placeholder="Search here...">
+                    <a href="#" class="search_icon"><i class="fa fa-search"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <div class="container-fluid vh-100">
+        <div class="row">
+            <!-- Lista de Items (20%) -->
+            <div class="col-4 p-5 d-flex flex-column">
+                {% include 'search/table_results.html.twig' %}
+            </div>
+
+            <!-- Mapa (80%) -->
+            <div class="col-8 p-5 d-flex flex-column">
+                {% include 'map/index_map.html.twig' %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block google_script %}
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&callback=initMap" async
+            defer></script>
+{% endblock %}

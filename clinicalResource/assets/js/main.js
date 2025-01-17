@@ -6,6 +6,10 @@
 * License: https://bootstrapmade.com/license/
 */
 
+//Custom table_search
+import('table_search');
+import('mapa');
+
 (function() {
   "use strict";
 
