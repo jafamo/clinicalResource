@@ -26,3 +26,8 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    admin.doctor:
+      class: App\Infrastructure\Http\Admin\Doctor\DoctorAdmin
+      tags:
+        - { name: sonata.admin, model_class: App\Domain\Entity\Doctor, group: Listados ,manager_type: orm, label: Doctors }
