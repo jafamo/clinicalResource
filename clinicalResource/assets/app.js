@@ -29,7 +29,6 @@ import './js/animacion_tooltip.js';
 
 
 // Assets CSS
-import './vendor/bootstrap/css/bootstrap.min.css';
 import './vendor/bootstrap-icons/bootstrap-icons.css';
 import './vendor/aos/aos.css';
 import './vendor/glightbox/css/glightbox.css';
@@ -38,4 +37,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/main.css';
 import './css/search.css';
 import './css/animacion_tooltip.css';
+import '../assets/css/aos.css';
+import '../assets/css/glightbox.css';
+import '../assets/css/swiper-bundle.min.css';
 

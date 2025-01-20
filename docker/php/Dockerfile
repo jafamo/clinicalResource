@@ -1,5 +1,5 @@
 # Declarar el argumento PHP_VERSION
-ARG PHP_VERSION=8.2
+ARG PHP_VERSION=8.4
 
 # Utilizar la imagen base de PHP FPM
 FROM php:${PHP_VERSION}-fpm
@@ -9,6 +9,8 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     unzip \
     git \
+    nano \
+    make \
     curl \
     && docker-php-ext-install zip pdo pdo_mysql
 
