@@ -26,10 +26,10 @@ class Speciality
     private ?self $parent = null;
 
     #[ORM\OneToMany(mappedBy: "parent", targetEntity: self::class)]
-    private Collection $children;
+    public ?Collection $children;
 
     #[ORM\ManyToMany(targetEntity: Doctor::class, mappedBy: 'specialities')]
-    private Collection $medicos;
+    public ?Collection $medicos;
 
     public function __construct()
     {
@@ -102,5 +102,10 @@ class Speciality
     public function getMedicos(): Collection
     {
         return $this->medicos;
+    }
+
+    public function __toString(): string
+    {
+        return $this->name ?? 'null';
     }
 }

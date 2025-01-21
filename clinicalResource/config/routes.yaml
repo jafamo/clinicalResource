@@ -24,3 +24,17 @@ web:
         path: ../src/Infrastructure/Http/Web
         namespace: App\Infrastructure\Http\Web
     type: attribute
+
+admin:
+    resource:
+        path: ../src/Infrastructure/Http/Admin
+        namespace: App\Infrastructure\Http\Admin
+    type: attribute
+
+#app_admin_login:
+#
+#    path: /admin/login
+#    controller: App\Infrastructure\Http\Admin\LoginAdminController::login
+#
+#app_admin_logout:
+#    path: /admin/logout

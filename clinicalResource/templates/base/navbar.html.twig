@@ -27,10 +27,24 @@
                 <ul>
                     <li><a href="{{ path('app_home') }}" class="active">Home</a></li>
                     {% if app.user %}
+                        <li><a href="{{ path('app_search') }}">Search</a></li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li><a href="{{ path('sonata_admin_dashboard') }}">AdminPanel</a></li>
+                        {% endif %}
+                        <li><a href="{{ path('app_logout') }}">Logout</a></li>
+
+                        <li>{{ app.user.email }}</li>
+                        <img
+                                src="{{ asset('img/favicon.png') }}"
+                                alt="{{ app.user.email }}"
+                                width="20" height="20"
+                        />
 
                     {% else %}
                         <li><a href="{{ path('app_login') }}">Login</a></li>
                         <li><a href="{{ path('app_register') }}">Register</a></li>
+{#                        <li><a href="{{ path('security_login') }}">Admin Login</a></li>#}
+
                     {% endif %}
                     <li><a href="{{ base_url_api }}">API</a></li>
 
@@ -53,16 +67,6 @@
                     {#                            <li><a href="#">Dropdown 4</a></li> #}
                     {#                        </ul> #}
                     {#                    </li> #}
-                    {% if app.user %}
-                        <li><a href="{{ path('app_search') }}">Search</a></li>
-                        <li><a href="{{ path('app_logout') }}">Logout</a></li>
-                        <li>{{ app.user.email }}</li>
-                        <img
-                                src="{{ asset('img/favicon.png') }}"
-                                alt="{{ app.user.email }}"
-                                width="20" height="20"
-                        />
-                    {% endif %}
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>

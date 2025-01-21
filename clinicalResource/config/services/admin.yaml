@@ -1,0 +1,20 @@
+services:
+  # default configuration for services in *this* file
+  _defaults:
+    autowire: true      # Automatically injects dependencies in your services.
+    autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+  admin.doctor:
+    class: App\Infrastructure\Http\Admin\Doctor\DoctorAdmin
+    tags:
+      - { name: sonata.admin, model_class: App\Domain\Entity\Doctor, group: Listados ,manager_type: orm, label: Doctors, icon: '<i class="fas "></i>' }
+
+  admin.medical.center:
+    class: App\Infrastructure\Http\Admin\MedicalCenter\MedicalCenterAdmin
+    tags:
+      - { name: sonata.admin, model_class: App\Domain\Entity\MedicalCenter, group: Listados ,manager_type: orm, label: MedicalCenter }
+
+  admin.speciality:
+    class: App\Infrastructure\Http\Admin\Speciality\SpecialityAdmin
+    tags:
+      - { name: sonata.admin, model_class: App\Domain\Entity\Speciality, group: Listados ,manager_type: orm, label: Specialities }

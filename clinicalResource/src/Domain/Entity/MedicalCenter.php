@@ -38,7 +38,7 @@ class MedicalCenter
     private ?string $mapLink = null;
 
     #[ORM\ManyToMany(targetEntity: Doctor::class, mappedBy: 'centrosMedicos')]
-    private Collection $medicos;
+    public ?Collection $medicos;
 
     public function __construct()
     {
@@ -135,5 +135,11 @@ class MedicalCenter
     public function getMedicos(): Collection
     {
         return $this->medicos;
+    }
+
+
+    public function __toString(): string
+    {
+        return $this->name ?? 'null';
     }
 }
