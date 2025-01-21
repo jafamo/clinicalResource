@@ -29,3 +29,22 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
+    # Servicio para procesar el archivo
+    App\Infrastructure\Service\Csv\FileProcessor:
+      arguments: [ ]
+
+    # Servicio de validación
+    App\Domain\Validation\CsvDataValidator:
+      arguments: [ ]
+
+    # Caso de uso para procesar el archivo
+    App\Application\UseCase\ProcessFileUseCase:
+      arguments:
+        $validator: '@App\Domain\Validation\CsvDataValidator'
+
+    # Controlador
+    App\Infrastructure\Http\Web\Csv\UploadController:
+      arguments:
+        $fileProcessor: '@App\Infrastructure\Service\Csv\FileProcessor'
+        $useCase: '@App\Application\UseCase\ProcessFileUseCase'
+
