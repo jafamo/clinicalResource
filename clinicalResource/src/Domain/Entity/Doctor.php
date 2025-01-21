@@ -42,11 +42,11 @@ class Doctor
 
     #[ORM\ManyToMany(targetEntity: MedicalCenter::class, inversedBy: 'medicos')]
     #[ORM\JoinTable(name: 'medical_with_doctor')] // Nombre de la tabla intermedia
-    private Collection $centrosMedicos;
+    public Collection $centrosMedicos;
 
     #[ORM\ManyToMany(targetEntity: Speciality::class, inversedBy: 'medicos')]
     #[ORM\JoinTable(name: 'specialist_with_doctor')] // Nombre de la tabla intermedia
-    private Collection $specialities;
+    public Collection $specialities;
 
     public function __construct()
     {
@@ -197,5 +197,10 @@ class Doctor
         $this->specialities->removeElement($speciality);
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->name ?? 'null';
     }
 }
