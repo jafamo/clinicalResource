@@ -111,7 +111,7 @@ sonata_admin:
 #    label_translator_strategy: null
 #    pager_type: null
 
-#  templates:
+  templates:
 #    user_block: '@SonataAdmin/Core/user_block.html.twig'
 #    add_block: '@SonataAdmin/Core/add_block.html.twig'
 #    layout: '@SonataAdmin/standard_layout.html.twig'
@@ -122,7 +122,7 @@ sonata_admin:
 #    filter: '@SonataAdmin/Form/filter_admin_fields.html.twig'
 #    show: '@SonataAdmin/CRUD/show.html.twig'
 #    show_compare: '@SonataAdmin/CRUD/show_compare.html.twig'
-#    edit: '@SonataAdmin/CRUD/edit.html.twig'
+    edit: '@SonataAdmin/CRUD/edit.html.twig'
 #    preview: '@SonataAdmin/CRUD/preview.html.twig'
 #    history: '@SonataAdmin/CRUD/history.html.twig'
 #    acl: '@SonataAdmin/CRUD/acl.html.twig'
