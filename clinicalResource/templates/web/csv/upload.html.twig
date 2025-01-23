@@ -1,0 +1,114 @@
+{% extends 'home/home.html.twig' %}
+
+{% block text %}
+{#    <div class="container mt-5">#}
+{#        <h1>Upload File (CSV or XLSX)</h1>#}
+{#        {{ form_start(form) }}#}
+{#        <div class="mb-3">#}
+{#            {{ form_row(form.file, {'label': 'File'}) }}#}
+{#        </div>#}
+{#        <button type="submit" class="btn btn-primary">Upload</button>#}
+{#        {{ form_end(form) }}#}
+
+{#        {% for message in app.flashes('success') %}#}
+{#            <div class="alert alert-success mt-3">#}
+{#                {{ message }}#}
+{#            </div>#}
+{#        {% endfor %}#}
+
+{#        {% for message in app.flashes('danger') %}#}
+{#            <div class="alert alert-danger mt-3">#}
+{#                {{ message }}#}
+{#            </div>#}
+{#        {% endfor %}#}
+{#    </div>#}
+
+
+
+    <div class="container mt-5">
+        <h1>Subir archivo Excel</h1>
+        <form method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="file" class="form-label">Selecciona un archivo Excel (.xlsx)</label>
+                <input type="file" name="file" id="file" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Subir</button>
+        </form>
+
+        {% if validRows is not empty %}
+            <h2>Filas válidas</h2>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Start Time</th>
+                    <th>Completion Time</th>
+                    <th>Email</th>
+                    <th>Name</th>
+                    <th>lastModifiedTime</th>
+                    <th>Name2</th>
+                    <th>surname</th>
+                    <th>nameClinic</th>
+                    <th>speciality</th>
+                    <th>subSpeciality</th>
+                    <th>web</th>
+                    <th>phone2</th>
+                    <th>openingTimes</th>
+                    <th>email2</th>
+                    <th>personContact</th>
+                    <th>linkGoogle</th>
+
+                    <!-- Añade las demás columnas según tu DTO -->
+                </tr>
+                </thead>
+                <tbody>
+                {% for row in validRows %}
+                    <tr>
+                        <td>{{ row.id }}</td>
+                        <td>{{ row.startTime }}</td>
+                        <td>{{ row.completionTime }}</td>
+                        <td>{{ row.email }}</td>
+                        <td>{{ row.name }}</td>
+                        <!-- Añade las demás columnas según tu DTO -->
+                        <td>{{ row.lastModifiedTime }}</td>
+                        <td>{{ row.name2 }}</td>
+                        <td>{{ row.surname }}</td>
+                        <td>{{ row.name }}</td>
+                        <td>{{ row.name }}</td>
+                        <td>{{ row.name }}</td>
+                        <td>{{ row.name }}</td>
+                        <td>{{ row.name }}</td>
+                        <td>{{ row.name }}</td>
+                        <td>{{ row.name }}</td>
+                        <td>{{ row.name }}</td>
+                        <td>{{ row.name }}</td>
+                        <td>{{ row.name }}</td>
+                        <td>{{ row.name }}</td>
+                        <td>{{ row.name }}</td>
+                        <td>{{ row.name }}</td>
+                        <td>{{ row.name }}</td>
+                        <td>{{ row.name }}</td>
+                        <td>{{ row.name }}</td>
+                        <td>{{ row.name }}</td>
+                        <td>{{ row.name }}</td>
+                        <td>{{ row.name }}</td>
+                        <td>{{ row.name }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+
+        {% if errors is not empty %}
+            <h2>Errores</h2>
+            <ul class="list-group">
+                {% for error in errors %}
+                    <li class="list-group-item">
+                        <strong>Fila {{ error.row }}:</strong>
+                        <pre>{{ error.errors }}</pre>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+{% endblock %}

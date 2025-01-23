@@ -1,0 +1,25 @@
+{% extends 'home/home.html.twig' %}
+
+{% block text %}
+    <div class="container mt-5">
+        <h1>Resultados del procesamiento</h1>
+
+        <h2>Filas válidas</h2>
+        <ul>
+            {% for row in validRows %}
+                <li>{{ row.id }} - {{ row.name2 }} - {{ row.web }}</li>
+            {% else %}
+                <li>No hay filas válidas.</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Errores</h2>
+        <ul>
+            {% for error in errors %}
+                <li>Fila {{ error.row }}: {{ error.errors }}</li>
+            {% else %}
+                <li>No se encontraron errores.</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

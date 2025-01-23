@@ -7,12 +7,14 @@ FROM php:${PHP_VERSION}-fpm
 # Actualizar y agregar dependencias necesarias
 RUN apt-get update && apt-get install -y \
     libzip-dev \
+    libpng-dev \
+    libjpeg-dev \
     unzip \
     git \
     nano \
     make \
     curl \
-    && docker-php-ext-install zip pdo pdo_mysql
+    && docker-php-ext-install zip pdo pdo_mysql gd
 
 # Instalar Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
