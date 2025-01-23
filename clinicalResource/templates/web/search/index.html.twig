@@ -5,8 +5,8 @@
         <div class="col-sm-4 p-3 container h-100" style="padding-bottom: 1000px;">
             <div class="d-flex justify-content-center h-100">
                 <div class="search">
-                    <input class="search_input" type="text" name="" placeholder="Search here...">
-                    <a href="#" class="search_icon"><i class="fa fa-search"></i></a>
+                    <input class="search_input" type="text" id="searchInput" placeholder="Buscar por nombre o especialidad">
+{#                    <a href="#" class="search_icon"><i class="fa fa-search"></i></a>#}
                 </div>
             </div>
         </div>
@@ -16,12 +16,12 @@
         <div class="row">
             <!-- Lista de Items (20%) -->
             <div class="col-4 p-5 d-flex flex-column">
-                {% include 'search/table_results.html.twig' %}
+                {% include 'web/search/table_results.html.twig' %}
             </div>
 
             <!-- Mapa (80%) -->
             <div class="col-8 p-5 d-flex flex-column">
-                {% include 'map/index_map.html.twig' %}
+                {% include 'web/map/index_map.html.twig' %}
             </div>
         </div>
     </div>

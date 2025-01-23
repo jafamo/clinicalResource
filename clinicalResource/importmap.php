@@ -35,5 +35,8 @@ return [
         'path' => './assets/js/mapa.js',
         'entrypoint' => true,
     ],
-
+    'autocomplete_search' => [
+        'path' => './assets/js/autocomplete_search.js',
+        'entrypoint' => true,
+    ],
 ];
