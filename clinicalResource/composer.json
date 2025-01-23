@@ -16,6 +16,7 @@
         "lexik/jwt-authentication-bundle": "^3.1",
         "nelmio/cors-bundle": "^2.5",
         "phpdocumentor/reflection-docblock": "^5.6",
+        "phpoffice/phpspreadsheet": "^3.8",
         "phpstan/phpdoc-parser": "^2.0",
         "sonata-project/admin-bundle": "^4.34",
         "sonata-project/doctrine-orm-admin-bundle": "^4.17",

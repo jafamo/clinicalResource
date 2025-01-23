@@ -105,6 +105,8 @@ security:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/upload-csv, role: ROLE_ADMIN }
+
 #        - { path: ^/.*, role: PUBLIC_ACCESS }
 
 when@test:
