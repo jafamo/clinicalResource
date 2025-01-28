@@ -34,6 +34,9 @@ return [
         'path' => './assets/js/mapa.js',
         'entrypoint' => true,
     ],
+    'autocomplete_search' => [
+        'path' => './assets/js/autocomplete_search.js',
+        'entrypoint' => true,
     '@hotwired/stimulus' => [
         'version' => '3.2.2',
     ],

@@ -27,7 +27,7 @@ import './js/main.js';
 import './js/table_search.js';
 import './js/mapa.js';
 import './js/animacion_tooltip.js';
-
+import './js/autocomplete_search.js';
 
 // Assets CSS
 import './vendor/bootstrap-icons/bootstrap-icons.css';

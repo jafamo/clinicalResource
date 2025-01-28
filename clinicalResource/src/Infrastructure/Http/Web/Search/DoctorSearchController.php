@@ -4,12 +4,11 @@ namespace App\Infrastructure\Http\Web\Search;
 
 use App\Application\Service\SearchDoctorsService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[AsController]
-class SearchController extends AbstractController
+class DoctorSearchController extends AbstractController
 {
     private SearchDoctorsService $searchDoctorsService;
 
@@ -18,19 +17,16 @@ class SearchController extends AbstractController
         $this->searchDoctorsService = $searchDoctorsService;
     }
 
-    #[Route('/search', name: 'app_search')]
-    public function search(Request $request)
+    #[Route('/doctors/search', name: 'app_doctor_search', methods: ['GET'])]
+    public function search(Request $request): JsonResponse
     {
-        $googleMapsApiKey = $this->getParameter('google_maps_api_key');
         $name = $request->query->get('name');
         $specialty = $request->query->get('specialty');
+
         $doctors = $this->searchDoctorsService->execute($name, $specialty);
 
-        return $this->render('web/search/index.html.twig',
-            [
-                'google_maps_api_key' => $googleMapsApiKey,
-                'doctors' => $doctors,
 
-            ]);
+        return new JsonResponse($doctors);
     }
+
 }
