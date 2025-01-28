@@ -29,21 +29,17 @@
                     {% if app.user %}
                         <li><a href="{{ path('app_search') }}">Search</a></li>
                         {% if is_granted('ROLE_ADMIN') %}
-                            <li><a href="{{ path('sonata_admin_dashboard') }}">AdminPanel</a></li>
+                            <li><a href="{{ path('admin_dashboard') }}">AdminPanel</a></li>
                             <li><a href="{{ base_url_api }}">API</a></li>
                             <li><a href="{{path('app_csv_load')}}">CSV</a></li>
                         {% endif %}
-
                         <li><a href="{{ path('app_logout') }}">Logout</a></li>
-
-
                         <li>{{ app.user.email }}</li>
                         <img
                                 src="{{ asset('img/favicon.png') }}"
                                 alt="{{ app.user.email }}"
                                 width="20" height="20"
                         />
-
                     {% else %}
                         <li><a href="{{ path('app_login') }}">Login</a></li>
                         <li><a href="{{ path('app_register') }}">Register</a></li>

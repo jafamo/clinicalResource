@@ -26,7 +26,6 @@ return [
         'version' => '5.3.3',
         'type' => 'css',
     ],
-
     'table_search' => [
         'path' => './assets/js/table_search.js',
         'entrypoint' => true,
@@ -38,5 +37,13 @@ return [
     'autocomplete_search' => [
         'path' => './assets/js/autocomplete_search.js',
         'entrypoint' => true,
+    '@hotwired/stimulus' => [
+        'version' => '3.2.2',
+    ],
+    '@symfony/stimulus-bundle' => [
+        'path' => './vendor/symfony/stimulus-bundle/assets/dist/loader.js',
+    ],
+    'chart.js' => [
+        'version' => '3.9.1',
     ],
 ];
