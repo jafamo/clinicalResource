@@ -48,3 +48,5 @@ services:
         $fileProcessor: '@App\Infrastructure\Service\Csv\FileProcessor'
         $useCase: '@App\Application\UseCase\ProcessFileUseCase'
 
+    App\Infrastructure\Http\Admin\DashboardController:
+      arguments: [ ]
