@@ -18,9 +18,14 @@ class AuthenticationEntryPoint implements AuthenticationEntryPointInterface
 
     public function start(Request $request, ?AuthenticationException $authException = null): RedirectResponse
     {
+        if ($authException) {
+            // Por ejemplo, puedes registrar el mensaje de excepción.
+             $request->getSession()->getFlashBag()->add('error', $authException->getMessage());
+        }
+
         // add a custom flash message and redirect to the login page
         $request->getSession()->getFlashBag()->add('note', 'You have to login in order to access this page.');
 
-        return new RedirectResponse($this->urlGenerator->generate('security_login'));
+        return new RedirectResponse($this->urlGenerator->generate('app_login'));
     }
 }
