@@ -108,6 +108,33 @@ document.addEventListener('DOMContentLoaded', () => {
                         // Identificador único para cada acordeón
                         const accordionId = `accordion-${index}`;
 
+                        let details = '';
+
+                        if (doctor.phone) {
+                            details += `<strong>Phone:</strong> ${doctor.phone} <br>`;
+                        }
+                        if (doctor.openingTimes) {
+                            details += `<strong>Opening Times:</strong> ${doctor.openingTimes} <br>`;
+                        }
+                        if (doctor.specialty) {
+                            details += `<strong>Speciality:</strong> ${doctor.specialty} <br>`;
+                        }
+
+                        if (doctor.medicalCenter || doctor.address || doctor.genericPhone) {
+                            details += `<hr> <strong>Medical Center</strong> <br>`;
+
+                            if (doctor.medicalCenter) {
+                                details += `<strong>Name:</strong> ${doctor.medicalCenter} <br>`;
+                            }
+                            if (doctor.address) {
+                                details += `<strong>Address:</strong> ${doctor.address} <br>`;
+                            }
+                            if (doctor.genericPhone) {
+                                details += `<strong>Phone Medical Center:</strong> ${doctor.genericPhone} <br>`;
+                            }
+                        }
+
+
                         // Contenido del doctor + botón para abrir el acordeón
                         option.innerHTML = `
                             <div class="accordion" id="accordionExample">
@@ -121,10 +148,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                         </button>
                                     </h2>
                                     <div id="${accordionId}" class="accordion-collapse collapse" aria-labelledby="heading${index}" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            <strong>Especialidad:</strong> ${doctor.specialty} <br>
-                                            <strong>Centro Médico:</strong> ${doctor.medicalCenter} <br>
-                                            <strong>Prueba:</strong> Este es un texto de prueba.
+                                        <div class="accordion-body">     
+                                        ${details}                                                                                                            
                                         </div>
                                     </div>
                                 </div>
@@ -133,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         resultsContainer.appendChild(option);
                     });
-
+                    //actualizar el mapa con las marcas de los doctores
                     updateMarkers(data);
                 })
                 .catch(error => console.error('Error fetching doctors:', error));
