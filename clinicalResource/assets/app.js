@@ -1,3 +1,4 @@
+import './bootstrap.js';
 /*
  * Welcome to your app's main JavaScript file!
  *
@@ -26,7 +27,7 @@ import './js/main.js';
 import './js/table_search.js';
 import './js/mapa.js';
 import './js/animacion_tooltip.js';
-
+import './js/autocomplete_search.js';
 
 // Assets CSS
 import './vendor/bootstrap-icons/bootstrap-icons.css';
@@ -40,4 +41,5 @@ import './css/animacion_tooltip.css';
 import '../assets/css/aos.css';
 import '../assets/css/glightbox.css';
 import '../assets/css/swiper-bundle.min.css';
+import '../assets/css/animacion_result_search_acordeon.css';
 

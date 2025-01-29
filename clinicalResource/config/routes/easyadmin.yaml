@@ -1,0 +1,3 @@
+easyadmin:
+  resource: '../../src/Infrastructure/Http/Admin'
+  type: easyadmin.routes

@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: MedicalCenterRepository::class)]
 #[ORM\Table(name: "medical_center")]
 #[ApiResource]
-class MedicalCenter
+class MedicalCenter                                                                                                                                                 
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
