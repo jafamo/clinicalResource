@@ -47,8 +47,9 @@ class DoctorRepository extends ServiceEntityRepository implements DoctorReposito
     {
         $qb = $this->createQueryBuilder('d');
 
-        $qb->select('d.id, d.id, d.name, s.name AS specialty')
-            ->join('d.specialities', 's'); // Relación Many-to-Many
+        $qb->select('d.id, d.id, d.name, d.surname, d.phone, d.openingTimes, d.linkWeb, d.mapWeb, s.name AS specialty,cm.name AS medicalCenter')
+            ->join('d.specialities', 's') // Relación Many-to-Many
+            ->leftJoin('d.centrosMedicos', 'cm'); // Relación Many-to-Many
 
         // Construir la condición para el parámetro único
         if ($criteria) {

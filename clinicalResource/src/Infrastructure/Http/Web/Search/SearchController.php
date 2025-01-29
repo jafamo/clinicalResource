@@ -24,7 +24,7 @@ class SearchController extends AbstractController
         $googleMapsApiKey = $this->getParameter('google_maps_api_key');
         $name = $request->query->get('name');
         $specialty = $request->query->get('specialty');
-        $doctors = $this->searchDoctorsService->execute($name, $specialty);
+        $doctors = $this->searchDoctorsService->execute($name);
 
         return $this->render('web/search/index.html.twig',
             [
