@@ -41,4 +41,5 @@ import './css/animacion_tooltip.css';
 import '../assets/css/aos.css';
 import '../assets/css/glightbox.css';
 import '../assets/css/swiper-bundle.min.css';
+import '../assets/css/animacion_result_search_acordeon.css';
 
