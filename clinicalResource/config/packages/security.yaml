@@ -76,14 +76,14 @@ security:
             # This config requires being logged for the whole site and having the admin role for the admin part.
             # Change these rules to adapt them to your needs
 
-        - { path: ^/.*, role: PUBLIC_ACCESS }
+
 #        - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-#        - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
 
         - { path: ^/upload-csv, role: ROLE_ADMIN }
-
+        - { path: ^/.*, role: PUBLIC_ACCESS }
 #        - { path: ^/.*, role: PUBLIC_ACCESS }
 
 when@test:
