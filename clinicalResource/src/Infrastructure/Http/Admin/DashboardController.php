@@ -85,6 +85,7 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         return [
+            MenuItem::linkToUrl('Web', 'fa fa-globe', $this->generateUrl('app_home')),
             MenuItem::linkToDashboard('Dashboard', 'fa fa-home'),
             MenuItem::linkToLogout('Logout', 'fa fa-xmark'),
 
