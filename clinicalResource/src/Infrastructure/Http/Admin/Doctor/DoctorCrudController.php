@@ -43,7 +43,8 @@ class DoctorCrudController extends AbstractCrudController
             'phone',
             'openingTimes',
             $centroMedico,
-            $speciality
+            $speciality,
+            'notes'
         ];
 
     }

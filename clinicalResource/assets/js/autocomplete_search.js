@@ -119,6 +119,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (doctor.specialty) {
                             details += `<strong>Speciality:</strong> ${doctor.specialty} <br>`;
                         }
+                        if (doctor.notes) {
+                            details += `<strong>Notes:</strong> ${doctor.notes} <br>`;
+                        }
 
                         if (doctor.medicalCenter || doctor.address || doctor.genericPhone) {
                             details += `<hr> <strong>Medical Center</strong> <br>`;
