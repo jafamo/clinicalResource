@@ -48,6 +48,9 @@ class Doctor
     #[ORM\JoinTable(name: 'specialist_with_doctor')] // Nombre de la tabla intermedia
     public Collection $specialities;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    public ?string $notes = null;
+
     public function __construct()
     {
         $this->centrosMedicos = new ArrayCollection();
