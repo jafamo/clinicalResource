@@ -2,28 +2,39 @@
 
 namespace App\Infrastructure\Http\Web\Login;
 
+use App\Domain\DTO\Email\EmailDTO;
 use App\Domain\Entity\User;
+use App\Domain\Service\EmailSenderInterface;
 use App\Infrastructure\Form\RegistrationFormType;
 use App\Infrastructure\Security\EmailVerifier;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
 class RegistrationController extends AbstractController
 {
-    public function __construct(private EmailVerifier $emailVerifier)
+
+    public function __construct(
+        private EmailVerifier $emailVerifier,
+        private EmailSenderInterface $emailSender
+    )
     {
     }
 
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, Security $security, EntityManagerInterface $entityManager): Response
+    public function register(
+        Request $request,
+        UserPasswordHasherInterface $userPasswordHasher,
+        Security $security,
+        EntityManagerInterface $entityManager,
+        ParameterBagInterface $parameterBag
+    ): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -41,20 +52,28 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // generate a signed url and email it to the user
-            $this->emailVerifier->sendEmailConfirmation(
-                'app_verify_email',
-                $user,
-                (new TemplatedEmail())
-                    ->from(new Address('jafamo@gmail.com', 'Clinic Medical'))
-                    ->to((string) $user->getEmail())
-                    ->subject('Please Confirm your Email')
-                    ->htmlTemplate('registration/confirmation_email.html.twig')
+//            // generate a signed url and email it to the user
+//            $this->emailVerifier->sendEmailConfirmation(
+//                'app_verify_email',
+//                $user,
+//                (new TemplatedEmail())
+//                    ->from(new Address('jafamo@gmail.com', 'Clinic Medical'))
+//                    ->to((string) $user->getEmail())
+//                    ->subject('Please Confirm your Email')
+//                    ->htmlTemplate('registration/confirmation_email.html.twig')
+//            );
+
+            $emailDto = new EmailDTO(
+                $parameterBag->get('mailer_sender_email'),
+                $user->getEmail(),
+                'Registration sucessfull medical center',
+                'Thank you from Medical center team',
+                '<h1>Medical Center</h1> <br> <p>This link is created from medical center team, we apreciate your interest in our application</p>',
             );
-
+            $this->addFlash('success', 'Registration successful! Welcome to Medical Center. We send you an email');
             // do anything else you need here, like send an email
-
-            return $security->login($user, 'json_login', 'main');
+            $this->emailSender->sendEmail($emailDto);
+            return $security->login($user, 'form_login', 'main');
         }
 
         return $this->render('registration/register.html.twig', [
