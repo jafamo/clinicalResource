@@ -64,4 +64,7 @@
 /clinicalResource/env.local
 /.idea/clinicalResource.iml
 
+
+# environment docker
 ./.env
+.env
