@@ -63,3 +63,5 @@
 /.idea/dataSources.xml
 /clinicalResource/env.local
 /.idea/clinicalResource.iml
+
+./.env
