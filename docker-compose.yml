@@ -41,6 +41,7 @@ services:
       - php
     restart: always
 
+
 #  mailtrap:
 #    image: mailhog/mailhog
 #    container_name: clinical-smtp
