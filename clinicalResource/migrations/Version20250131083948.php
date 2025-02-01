@@ -28,8 +28,10 @@ final class Version20250131083948 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE doctor DROP notes');
     }
+
     public function isTransactional(): bool
     {
         return false; // Desactiva las transacciones para esta migración
     }
+
 }
