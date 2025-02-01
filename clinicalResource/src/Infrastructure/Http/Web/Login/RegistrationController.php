@@ -10,6 +10,7 @@ use App\Infrastructure\Security\EmailVerifier;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -31,7 +32,8 @@ class RegistrationController extends AbstractController
         Request $request,
         UserPasswordHasherInterface $userPasswordHasher,
         Security $security,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        ParameterBagInterface $parameterBag
     ): Response
     {
         $user = new User();
@@ -62,7 +64,7 @@ class RegistrationController extends AbstractController
 //            );
 
             $emailDto = new EmailDTO(
-                'medicalCener@gmail.com',
+                $parameterBag->get('mailer_sender_email'),
                 $user->getEmail(),
                 'Registration sucessfull medical center',
                 'Thank you from Medical center team',
