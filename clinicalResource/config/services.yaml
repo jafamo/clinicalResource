@@ -50,3 +50,6 @@ services:
 
     App\Infrastructure\Http\Admin\DashboardController:
       arguments: [ ]
+
+    App\Domain\Service\EmailSenderInterface:
+      alias: App\Infrastructure\Service\Email\EmailSenderService

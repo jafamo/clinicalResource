@@ -17,10 +17,10 @@ services:
     image: mariadb:${MARIADB_VERSION}
     container_name: clinical-db
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: clinicalMedical
-      MYSQL_USER: clinicMedical
-      MYSQL_PASSWORD: MedicalClinic01
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
       - "3311:3306"
     volumes:
@@ -40,6 +40,21 @@ services:
     depends_on:
       - php
     restart: always
+
+  mailtrap:
+    image: mailhog/mailhog
+    container_name: clinical-smtp
+    environment:
+      - MAIL_DOMAIN=${MAIL_DOMAIN}
+      - MAIL_RELAY_HOST=${MAIL_RELAY_HOST}  # Cambia a tu servicio SMTP si usas uno externo
+      - MAIL_RELAY_PORT=${MAIL_RELAY_PORT}
+      - MAIL_RELAY_USER=${MAIL_RELAY_USER}  # Usar tus credenciales SMTP si es necesario
+      - MAIL_RELAY_PASSWORD=${MAIL_RELAY_PASSWORD}
+      - MAILCATCHER_HTTP_PORT="1080"
+    restart: always
+    ports:
+      - "1025:1025"  # SMTP
+      - "8025:8025"  # Interfaz web de Mailhog (alternativa a Mailtrap)
 
 volumes:
   db_data:
