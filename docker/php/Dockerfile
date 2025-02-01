@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
     nano \
     make \
     curl \
-    ibicu-dev \
+    libicu-dev \
     && docker-php-ext-install zip pdo pdo_mysql gd intl
 
 # Instalar Composer
