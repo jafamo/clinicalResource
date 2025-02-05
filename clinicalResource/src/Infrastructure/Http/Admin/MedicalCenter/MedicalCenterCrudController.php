@@ -4,6 +4,8 @@ namespace App\Infrastructure\Http\Admin\MedicalCenter;
 
 use App\Domain\Entity\MedicalCenter;
 use App\Infrastructure\Http\Admin\Doctor\DoctorCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
@@ -50,6 +52,14 @@ class MedicalCenterCrudController extends AbstractCrudController
             // the following option to not display anything when some value is `null`
             // (this option is applied both in the `index` and `detail` pages)
             ->hideNullValues();
+    }
+
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+            ->add(Crud::PAGE_INDEX, Action::NEW) // Asegura que se pueda crear
+            ->add(Crud::PAGE_EDIT, Action::NEW) // Permite crear desde otro formulario
+            ->add(Crud::PAGE_NEW, Action::NEW); // Muestra botón de crear
     }
 
 }
