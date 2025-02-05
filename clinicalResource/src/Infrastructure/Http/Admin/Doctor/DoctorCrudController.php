@@ -7,10 +7,16 @@ use App\Domain\Entity\MedicalCenter;
 use App\Domain\Entity\Speciality;
 use App\Infrastructure\Http\Admin\MedicalCenter\MedicalCenterCrudController;
 use App\Infrastructure\Http\Admin\Speciality\SpecialityCrudController;
+use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class DoctorCrudController extends AbstractCrudController
 {
@@ -31,23 +37,56 @@ class DoctorCrudController extends AbstractCrudController
             ->setCrudController(MedicalCenterCrudController::class); // Opcional: Controlador específico para MedicalCenter
             $speciality = AssociationField::new('specialities', 'Speciality')
                 ->setCrudController(SpecialityCrudController::class);
-        } else {
-            $centroMedico = CollectionField::new('centrosMedicos', 'Medical Center')
-                ->SetEntryType(MedicalCenter::class);
-            $speciality = CollectionField::new('specialities', 'Speciality')
-                ->SetEntryType(Speciality::class);
+
+            return [
+                FormField::addTab('Doctor Information')
+                    ->setIcon('fa fa-user-doctor')->addCssClass('optional')
+                    ->setHelp('Doctor information is preferred'),
+                TextField::new('name'),
+                TextField::new('surname'),
+                EmailField::new('email'),
+                TextField::new('phone'),
+                TextField::new('openingTimes'),
+
+                FormField::addTab('Contact Information Tab')
+                    ->setIcon('fa fa-hospital')->addCssClass('optional')
+                    ->setHelp('Medical center is preferred'),
+                $centroMedico,
+                $speciality,
+                FormField::addTab('Map Information Tab')
+                    ->setIcon('fa fa-map')->addCssClass('optional')
+                    ->setHelp('Introduce map'),
+                TextareaField::new('linkWeb'),
+                TextareaField::new('mapWeb'),
+
+            ];
         }
+
+        $centroMedico = CollectionField::new('centrosMedicos', 'Medical Center')
+                ->SetEntryType(MedicalCenter::class);
+        $speciality = CollectionField::new('specialities', 'Speciality')
+                ->SetEntryType(Speciality::class);
+
         return [
-            'name',
-            'surname',
-            'phone',
-            'openingTimes',
+            FormField::addPanel('Doctor Information')->setIcon('user'),
+            TextField::new('name'),
+            TextField::new('surname'),
+            EmailField::new('email'),
+            TextField::new('phone'),
+            TextField::new('openingTimes'),
+            TextareaField::new('notes'),
+
+            FormField::addPanel('Medical Details')->setIcon('hospital'),
             $centroMedico,
             $speciality,
-            'notes'
-        ];
 
+            FormField::addPanel('Map Information')->setIcon('map'),
+            TextareaField::new('linkWeb'),
+            TextareaField::new('mapWeb'),
+        ];
     }
+
+
 
     public function createEntity(string $entityFqcn)
     {
