@@ -9,6 +9,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class MedicalCenterCrudController extends AbstractCrudController
 {
@@ -31,11 +33,17 @@ class MedicalCenterCrudController extends AbstractCrudController
             $doctor = '';
         }
         return [
-            'name',
-            'description',
-            'address',
-            'phoneGeneric',
-            'email',
+            FormField::addTab('Medical Center Information')
+                ->setIcon('fa fa-user-doctor')->addCssClass('optional')
+                ->setHelp('Doctor information is preferred'),
+            FormField::addColumn(4),
+            TextField::new('name'),
+            TextField::new('description'),
+            TextField::new('address'),
+            TextField::new('phoneGeneric'),
+            TextField::new('email'),
+            FormField::addColumn(8),
+
             'mapLink',
             $doctor,
         ];
