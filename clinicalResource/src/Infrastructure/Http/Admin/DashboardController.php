@@ -6,6 +6,10 @@ use App\Domain\Entity\Doctor;
 use App\Domain\Entity\MedicalCenter;
 use App\Domain\Entity\Speciality;
 use App\Domain\Entity\User;
+use App\Domain\Repository\DoctorRepositoryInterface;
+use App\Domain\Repository\MedicalCenterRepositoryInterface;
+use App\Domain\Repository\SpecialityRepositoryInterface;
+use App\Domain\Repository\UserRepositoryInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -21,7 +25,12 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 class DashboardController extends AbstractDashboardController
 {
     public function __construct(
-        private ChartBuilderInterface $chartBuilder
+        private ChartBuilderInterface $chartBuilder,
+        private DoctorRepositoryInterface $doctorRepository,
+        private MedicalCenterRepositoryInterface $medicalCenterRepository,
+        private SpecialityRepositoryInterface $specialistRepository,
+        private UserRepositoryInterface $userRepository
+
     )
     {
     }
@@ -153,9 +162,14 @@ class DashboardController extends AbstractDashboardController
     {
         $chart = $this->chartBuilder->createChart(Chart::TYPE_DOUGHNUT);
 
-        $data = [100, 20, 40];
-        $labels = ['Doctors', 'Medical Centers', 'Specialists'];
-        $backgroundColors = ['rgba(255, 99, 132, 0.6)', 'rgba(54, 162, 235, 0.6)', 'rgba(255, 206, 86, 0.6)'];
+        $doctors = $this->doctorRepository->totalItems();
+        $medicalCenter = $this->medicalCenterRepository->totalItems();
+        $specialist = $this->specialistRepository->totalItems();
+        $users = $this->userRepository->totalItems();
+
+        $data = [$doctors, $medicalCenter, $specialist, $users];
+        $labels = ['Doctors', 'Medical Centers', 'Specialists', 'Users'];
+        $backgroundColors = ['rgba(255, 99, 132, 0.6)', 'rgba(54, 162, 235, 0.6)', 'rgba(255, 206, 86, 0.6)', 'rgba(163,221,203,0.2)'];
 
         $chart->setData([
             'labels' => $labels,
@@ -164,7 +178,7 @@ class DashboardController extends AbstractDashboardController
                     'label' => 'Statistics',
                     'data' => $data, // Valores finales
                     'backgroundColor' => $backgroundColors,
-                    'borderColor' => ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)'],
+                    'borderColor' => ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(163,221,203,1)'],
                     'borderWidth' => 1,
                     'barThickness' => 50, // Ajusta el grosor de las barras
                     'barPercentage' => 0.8, // Reduce el espacio entre barras (valor menor = más juntas)

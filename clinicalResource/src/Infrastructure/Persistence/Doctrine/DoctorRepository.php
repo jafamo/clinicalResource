@@ -73,4 +73,14 @@ class DoctorRepository extends ServiceEntityRepository implements DoctorReposito
         return $qb->getQuery()->getArrayResult();
     }
 
+    /**
+     * @return int
+     */
+    public function totalItems(): int
+    {
+        return $this->createQueryBuilder('u')
+            ->select('count(u.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }

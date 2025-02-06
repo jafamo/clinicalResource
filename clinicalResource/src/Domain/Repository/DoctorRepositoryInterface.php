@@ -7,6 +7,7 @@ use App\Domain\Entity\Doctor;
 interface DoctorRepositoryInterface
 {
     public function searchByCriteria(?string $criteria): array;
+    public function totalItems(): int;
 
 
 }
