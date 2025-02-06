@@ -1,4 +1,9 @@
 import './bootstrap.js';
+import Chart from 'chart.js';
+import * as ChartDataLabels from 'chartjs-plugin-datalabels';
+
+Chart.register(ChartDataLabels.default ?? ChartDataLabels);
+
 /*
  * Welcome to your app's main JavaScript file!
  *
@@ -42,4 +47,8 @@ import '../assets/css/aos.css';
 import '../assets/css/glightbox.css';
 import '../assets/css/swiper-bundle.min.css';
 import '../assets/css/animacion_result_search_acordeon.css';
+
+//
+// import {Chart} from "./vendor/chart.js/chart.js.index.js";
+// Chart.register(ChartDataLabels);
 
