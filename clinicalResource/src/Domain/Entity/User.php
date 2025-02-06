@@ -2,6 +2,7 @@
 
 namespace App\Domain\Entity;
 
+use App\Domain\Security\Role;
 use App\Infrastructure\Persistence\Doctrine\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -72,11 +73,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
 
-        if (in_array('ROLE_ADMIN', $roles, true)) {
-            $roles[] = 'ROLE_SONATA_ADMIN';
+        // Garantiza que todos los usuarios tengan al menos ROLE_USER
+        if (!in_array(Role::ROLE_USER, $roles, true)) {
+            $roles[] = Role::ROLE_USER;
         }
 
         return array_unique($roles);

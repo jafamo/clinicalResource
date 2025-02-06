@@ -1,0 +1,6 @@
+easy_admin:
+  design:
+    assets:
+      js:
+        - '../../assets/js/chartjs-plugin-datalabels.js' ##'js/chartjs-plugin-datalabels.js'  # Añadir tu archi
+

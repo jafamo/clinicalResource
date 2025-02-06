@@ -3,13 +3,14 @@
 namespace App\Infrastructure\Persistence\Doctrine;
 
 use App\Domain\Entity\Speciality;
+use App\Domain\Repository\SpecialityRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @extends ServiceEntityRepository<Speciality>
  */
-class SpecialityRepository extends ServiceEntityRepository
+class SpecialityRepository extends ServiceEntityRepository implements SpecialityRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -40,4 +41,14 @@ class SpecialityRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+    /**
+     * @return int
+     */
+    public function totalItems(): int
+    {
+        return $this->createQueryBuilder('s')
+            ->select('count(s.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }
