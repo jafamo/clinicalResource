@@ -11,6 +11,10 @@
 # Help: https://bootstrapmade.com/color-system/
 --------------------------------------------------------------*/
 
+.input_login_register {
+  width:150%;
+}
+
 #map {
   height: 500px;
   width: 100%;
