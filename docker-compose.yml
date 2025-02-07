@@ -56,11 +56,19 @@ services:
       #- ./docker/nginx/conf.d/rpi_apolo.crt:/etc/nginx/conf.d/rpi_apolo.crt:ro
       #- ./docker/nginx/conf.d/rpi_apolo.key:/etc/nginx/conf.d/rpi_apolo.key:ro
     labels:
+#      - "traefik.enable=true"
+#      - "traefik.http.routers.clinical.rule=Host(`jafamo.ddns.net`)"
+#      - "traefik.http.routers.clinical.entrypoints=websecure"
+#      - "traefik.http.routers.clinical.tls.certresolver=letsencrypt"
+#      - "traefik.http.services.clinical.loadbalancer.server.port=80"
+#
       - "traefik.enable=true"
-      - "traefik.http.routers.clinical.rule=Host(`jafamo.ddns.net`)"
-      - "traefik.http.routers.clinical.entrypoints=websecure"
-      - "traefik.http.routers.clinical.tls.certresolver=letsencrypt"
-      - "traefik.http.services.clinical.loadbalancer.server.port=80"      
+      - "traefik.http.routers.https.rule=Host(`jafamo.ddns.net`)"
+      - "traefik.http.routers.https.entrypoints=https"
+      - "traefik.http.services.https.loadbalancer.server.port=9015"
+      - "traefik.http.middlewares.https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.http.middlewares=https-redirect"
+      - "traefik.http.routers.http.rule=Host(`jafamo.ddns.net`)"  
 #    ports:
 #      - "9015:443"
     depends_on:
