@@ -6,12 +6,13 @@ services:
       - "--api.dashboard=true"
       - "--providers.docker=true"
       - "--entrypoints.web.address=:80"
-      - "--entrypoints.websecure.address=:9015"
+      - "--entrypoints.websecure.address=:443"
       - "--certificatesresolvers.letsencrypt.acme.httpChallenge.entryPoint=web"
       - "--certificatesresolvers.letsencrypt.acme.email=jafamol@gmail.com"
       - "--certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/acme.json"
     ports:
-      - "9015:9015"
+      - "80:80"      # HTTP
+      - "443:443"    # HTTPS
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
       - "letsencrypt:/letsencrypt"
@@ -55,22 +56,17 @@ services:
       - ./docker/nginx/logs/nginx:/var/log/nginx      
       #- ./docker/nginx/conf.d/rpi_apolo.crt:/etc/nginx/conf.d/rpi_apolo.crt:ro
       #- ./docker/nginx/conf.d/rpi_apolo.key:/etc/nginx/conf.d/rpi_apolo.key:ro
-    labels:
-#      - "traefik.enable=true"
-#      - "traefik.http.routers.clinical.rule=Host(`jafamo.ddns.net`)"
-#      - "traefik.http.routers.clinical.entrypoints=websecure"
-#      - "traefik.http.routers.clinical.tls.certresolver=letsencrypt"
-#      - "traefik.http.services.clinical.loadbalancer.server.port=80"
-#
-      - "traefik.enable=true"
-      - "traefik.http.routers.https.rule=Host(`jafamo.ddns.net`)"
-      - "traefik.http.routers.https.entrypoints=https"
-      - "traefik.http.services.https.loadbalancer.server.port=9015"
-      - "traefik.http.middlewares.https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.http.middlewares=https-redirect"
-      - "traefik.http.routers.http.rule=Host(`jafamo.ddns.net`)"  
 #    ports:
 #      - "9015:443"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.clinical.rule=Host(`jafamo.ddns.net`)"
+      - "traefik.http.routers.clinical.entrypoints=websecure"
+      - "traefik.http.routers.clinical.tls.certresolver=letsencrypt"
+      - "traefik.http.services.clinical.loadbalancer.server.port=9015"  # Mantener puerto 9015
+      - "traefik.http.middlewares.https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.http.middlewares=https-redirect"
+      - "traefik.http.routers.http.rule=Host(`jafamo.ddns.net`)"
     depends_on:
       - php
     restart: always
