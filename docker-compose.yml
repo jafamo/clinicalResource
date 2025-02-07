@@ -61,8 +61,8 @@ services:
       - "traefik.http.routers.clinical.entrypoints=websecure"
       - "traefik.http.routers.clinical.tls.certresolver=letsencrypt"
       - "traefik.http.services.clinical.loadbalancer.server.port=80"      
-    ports:
-      - "9015:443"
+#    ports:
+#      - "9015:443"
     depends_on:
       - php
     restart: always
