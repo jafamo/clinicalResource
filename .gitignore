@@ -68,3 +68,6 @@
 # environment docker
 ./.env
 .env
+
+/docker/ngnix/conf.d/rpi_apolo.crt
+/docker/ngnix/conf.d/rpi_apolo.key
