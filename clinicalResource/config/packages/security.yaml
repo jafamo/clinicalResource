@@ -1,4 +1,5 @@
 security:
+    access_denied_url: /error/403
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
@@ -74,8 +75,8 @@ security:
     access_control:
         ### - API - ###
         - { path: ^/api/login, roles: PUBLIC_ACCESS }
-        - { path: ^/api/v1/pruebas/, roles: PUBLIC_ACCESS }
-        - { path: ^/api,       roles: PUBLIC_ACCESS }
+        - { path: ^/api/v1/pruebas/, roles: ROLE_SUPER_ADMIN }
+        - { path: ^/api,       roles: ROLE_SUPER_ADMIN }
         - { path: ^/home,      roles: PUBLIC_ACCESS }
         #        - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
         # - { path: ^/admin, roles: ROLE_ADMIN }
