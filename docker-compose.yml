@@ -3,19 +3,14 @@ services:
     image: traefik:v2.10
     container_name: clinical-traefik
     command:
-      - "--api.dashboard=true"
-      - "--providers.docker=true"
-      - "--entrypoints.web.address=:80"
-      - "--entrypoints.websecure.address=:443"
-      - "--certificatesresolvers.letsencrypt.acme.httpChallenge.entryPoint=web"
-      - "--certificatesresolvers.letsencrypt.acme.email=jafamol@gmail.com"
-      - "--certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/acme.json"
+      - "--configFile=/etc/traefik/traefik.yml"   # Usa el archivo de configuración traefik.yml
     ports:
       - "80:80"      # HTTP
       - "443:443"    # HTTPS
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
-      - "letsencrypt:/letsencrypt"
+      - "letsencrypt:/letsencrypt"                # Almacenar los certificados
+      - "./docker/traefik/traefik.yml:/etc/traefik/traefik.yml"   # Monta el archivo traefik.yml en el contenedor
     restart: always
 
   php:
