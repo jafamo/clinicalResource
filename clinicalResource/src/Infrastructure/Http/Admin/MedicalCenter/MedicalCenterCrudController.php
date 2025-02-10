@@ -62,12 +62,4 @@ class MedicalCenterCrudController extends AbstractCrudController
             ->hideNullValues();
     }
 
-    public function configureActions(Actions $actions): Actions
-    {
-        return $actions
-            ->add(Crud::PAGE_INDEX, Action::NEW) // Asegura que se pueda crear
-            ->add(Crud::PAGE_EDIT, Action::NEW) // Permite crear desde otro formulario
-            ->add(Crud::PAGE_NEW, Action::NEW); // Muestra botón de crear
-    }
-
 }
