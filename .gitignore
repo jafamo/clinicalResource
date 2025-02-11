@@ -68,3 +68,4 @@
 # environment docker
 ./.env
 .env
+/.env
