@@ -34,14 +34,14 @@ class AccessDeniedListener implements EventSubscriberInterface
     {
         $exception = $event->getThrowable();
         if ($exception instanceof AccessDeniedException) {
-//            return;
+            return;
             $event->setResponse (new RedirectResponse($this->router->generate('error_page', ['code' => 403])));
         }
         if ($exception instanceof NotFoundHttpException) {
             $event->setResponse (new RedirectResponse($this->router->generate('error_page', ['code' => 404])));
         }
         if ($exception->getCode() === 500) {
-            $event->setResponse (new RedirectResponse($this->router->generate('error_page', ['code' => 404])));
+            $event->setResponse (new RedirectResponse($this->router->generate('error_page', ['code' => 500])));
         }
 
         // ... perform some action (e.g. logging)
