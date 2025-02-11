@@ -35,10 +35,13 @@ import './js/animacion_tooltip.js';
 import './js/autocomplete_search.js';
 
 // Assets CSS
-import './vendor/bootstrap-icons/bootstrap-icons.css';
-import './vendor/aos/aos.css';
-import './vendor/glightbox/css/glightbox.css';
-import './vendor/swiper/swiper-bundle.min.css';
+//import './vendor/bootstrap-icons/bootstrap-icons.css';
+import './css/aos.css';
+//import './vendor/aos/aos.css';
+import './css/glightbox.css';
+//import './vendor/glightbox/css/glightbox.css';
+import './css/swiper-bundle.min.css';
+//import './vendor/swiper/swiper-bundle.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/main.css';
 import './css/search.css';
