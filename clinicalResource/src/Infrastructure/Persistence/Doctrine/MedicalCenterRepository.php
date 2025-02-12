@@ -27,4 +27,24 @@ class MedicalCenterRepository extends ServiceEntityRepository implements Medical
             ->getQuery()
             ->getSingleScalarResult();
     }
+
+    public function findByName(string $name): ?MedicalCenter
+    {
+        $qb = $this->createQueryBuilder('mc')
+            ->where('mc.name = :name')
+            ->setParameter('name', $name)
+            ->getQuery();
+
+        return $qb->getOneOrNullResult();
+    }
+
+    public function save(MedicalCenter $medicalCenter, bool $flush = true): void
+    {
+        $entityManager = $this->getEntityManager();
+        $entityManager->persist($medicalCenter);
+
+        if ($flush) {
+            $entityManager->flush();
+        }
+    }
 }
