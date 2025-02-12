@@ -51,4 +51,24 @@ class SpecialityRepository extends ServiceEntityRepository implements Speciality
             ->getQuery()
             ->getSingleScalarResult();
     }
+
+    public function findByName(string $name): ?Speciality
+    {
+        $qb = $this->createQueryBuilder('s')
+            ->where('s.name = :name')
+            ->setParameter('name', $name)
+            ->getQuery();
+
+        return $qb->getOneOrNullResult();
+    }
+
+    public function save(Speciality $speciality, ?bool $flush = true): void
+    {
+        $entityManager = $this->getEntityManager();
+        $entityManager->persist($speciality);
+
+        if ($flush) {
+            $entityManager->flush();
+        }
+    }
 }
