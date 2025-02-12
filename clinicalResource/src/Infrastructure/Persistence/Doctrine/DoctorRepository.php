@@ -105,8 +105,8 @@ class DoctorRepository extends ServiceEntityRepository implements DoctorReposito
         }
 
         // Evitar duplicados al hacer JOINs con relaciones ManyToMany
-//        $qb->groupBy('d.id, s.id, mc.id, sub.id') // Agrupar correctamente, incluyendo los grupos por especialidad y subespecialidad
-//        ->setMaxResults(10);
+        $qb->groupBy('d.id, s.id, mc.id, sub.id') // Agrupar correctamente, incluyendo los grupos por especialidad y subespecialidad
+        ->setMaxResults(10);
 
         return $qb->getQuery()->getArrayResult();
     }
