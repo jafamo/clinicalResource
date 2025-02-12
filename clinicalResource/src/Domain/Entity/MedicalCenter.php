@@ -28,7 +28,7 @@ class MedicalCenter
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $address = null;
 
-    #[ORM\Column(length: 20, nullable: true)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $phoneGeneric = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -142,4 +142,5 @@ class MedicalCenter
     {
         return $this->name ?? 'null';
     }
+
 }
