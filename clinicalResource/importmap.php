@@ -56,4 +56,12 @@ return [
     '@kurkle/color' => [
         'version' => '0.3.4',
     ],
+    'bootstrap-icons/font/bootstrap-icons.min.css' => [
+        'version' => '1.11.3',
+        'type' => 'css',
+    ],
+    '@fortawesome/fontawesome-free/css/all.css' => [
+        'version' => '6.7.2',
+        'type' => 'css',
+    ],
 ];
