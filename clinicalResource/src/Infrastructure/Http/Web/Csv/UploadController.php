@@ -48,6 +48,8 @@ class UploadController extends AbstractController
                     $result['validRows'] = $processingResult['valid'] ?? [];
                     $result['errors'] = $processingResult['errors'] ?? [];
 
+                    $this->addFlash('success', 'File imported: ');
+
                     return $this->render('web/csv/result.html.twig', [
                         'validRows' => $result['validRows'],
                         'errors' => $result['errors'],
