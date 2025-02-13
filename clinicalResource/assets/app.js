@@ -35,6 +35,7 @@ import './js/animacion_tooltip.js';
 import './js/autocomplete_search.js';
 
 // Assets CSS
+
 import './vendor/bootstrap-icons/bootstrap-icons.css';
 import './css/aos.css';
 //import './vendor/aos/aos.css';
