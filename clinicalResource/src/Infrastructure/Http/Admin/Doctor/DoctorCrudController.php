@@ -34,9 +34,24 @@ class DoctorCrudController extends AbstractCrudController
 
         if ($pageName === Crud::PAGE_EDIT || $pageName === Crud::PAGE_NEW) {
             $centroMedico = AssociationField::new('centrosMedicos', 'Medical Center') // Relación con MedicalCenter
-            ->setCrudController(MedicalCenterCrudController::class); // Opcional: Controlador específico para MedicalCenter
+            ->setCrudController(MedicalCenterCrudController::class)
+                ->setFormTypeOptions([
+                    'multiple' => true,  // Permite seleccionar varios
+                    'by_reference' => false,
+                    'expanded' => true,
+                    'row_attr' => ['style' => 'display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;'],
+                    'attr' => ['data-ea-widget' => 'ea-autocomplete'], // Fuerza el uso del widget correcto
+                ]);
+            ; // Opcional: Controlador específico para MedicalCenter
             $speciality = AssociationField::new('specialities', 'Speciality')
-                ->setCrudController(SpecialityCrudController::class);
+                ->setCrudController(SpecialityCrudController::class)
+                ->setFormTypeOptions([
+                    'multiple' => true,  // Permite seleccionar varios
+                    'by_reference' => false,
+                    'expanded' => true,
+                    'row_attr' => ['style' => 'display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;'],
+                    'attr' => ['data-ea-widget' => 'ea-autocomplete'], // Fuerza el uso del widget correcto
+                ]);
 
             return [
                 FormField::addTab('Doctor Information')
@@ -51,8 +66,10 @@ class DoctorCrudController extends AbstractCrudController
                 FormField::addTab('Contact Information Tab')
                     ->setIcon('fa fa-hospital')->addCssClass('optional')
                     ->setHelp('Medical center is preferred'),
-                $centroMedico,
+                FormField::addColumn(4),
                 $speciality,
+                FormField::addColumn(4),
+                $centroMedico,
                 FormField::addTab('Map Information Tab')
                     ->setIcon('fa fa-map')->addCssClass('optional')
                     ->setHelp('Introduce map'),
@@ -68,21 +85,22 @@ class DoctorCrudController extends AbstractCrudController
                 ->SetEntryType(Speciality::class);
 
         return [
-            FormField::addPanel('Doctor Information')->setIcon('user'),
+            //FormField::addPanel('Doctor Information')->setIcon('user'),
             TextField::new('name'),
             TextField::new('surname'),
             EmailField::new('email'),
             TextField::new('phone'),
-            TextField::new('openingTimes'),
-            TextareaField::new('notes'),
+            //TextField::new('openingTimes'),
+            //TextareaField::new('notes'),
 
-            FormField::addPanel('Medical Details')->setIcon('hospital'),
+            //FormField::addPanel('Medical Details')->setIcon('hospital'),
             $centroMedico,
             $speciality,
-
-            FormField::addPanel('Map Information')->setIcon('map'),
-            TextareaField::new('linkWeb'),
-            TextareaField::new('mapWeb'),
+//            AssociationField::new('centrosMedicos', 'Medical Centers')->setFormTypeOption('by_reference', false),
+//            AssociationField::new('specialities', 'Specialities')->setFormTypeOption('by_reference', false),
+            //FormField::addPanel('Map Information')->setIcon('map'),
+            //TextareaField::new('linkWeb'),
+            //TextareaField::new('mapWeb'),
         ];
     }
 

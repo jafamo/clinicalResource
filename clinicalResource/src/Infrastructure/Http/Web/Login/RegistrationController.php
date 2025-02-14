@@ -53,7 +53,7 @@ class RegistrationController extends AbstractController
 
             //TODO: Validate if email exists before persists
             if (!$this->userExist($user->getEmail())) {
-                $this->addFlash('error', 'Registration failed!');
+                $this->addFlash('danger', 'Registration failed!');
                 //TODO save log
                 return $this->redirectToRoute('app_home');
             }
@@ -110,7 +110,7 @@ class RegistrationController extends AbstractController
             $user = $this->getUser();
             $this->emailVerifier->handleEmailConfirmation($request, $user);
         } catch (VerifyEmailExceptionInterface $exception) {
-            $this->addFlash('verify_email_error', $exception->getReason());
+            $this->addFlash('danger', $exception->getReason());
 
             return $this->redirectToRoute('app_register');
         }
