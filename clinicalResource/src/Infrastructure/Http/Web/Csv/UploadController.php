@@ -56,12 +56,12 @@ class UploadController extends AbstractController
                     ]);
 
                 } catch (FileException $e) {
-                    $this->addFlash('error', 'Error al subir el archivo: ' . $e->getMessage());
+                    $this->addFlash('danger', 'Error al subir el archivo: ' . $e->getMessage());
                 } catch (\Exception $e) {
-                    $this->addFlash('error', 'Error al procesar el archivo: ' . $e->getMessage());
+                    $this->addFlash('danger', 'Error al procesar el archivo: ' . $e->getMessage());
                 }
             } else {
-                $this->addFlash('error', 'Por favor, sube un archivo Excel válido (.xlsx).');
+                $this->addFlash('danger', 'Por favor, sube un archivo Excel válido (.xlsx).');
             }
         }
 

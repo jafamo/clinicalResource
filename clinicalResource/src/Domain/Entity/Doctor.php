@@ -161,7 +161,7 @@ class Doctor
         return $this->centrosMedicos;
     }
 
-    public function addCentroMedico(MedicalCenter $centroMedico): self
+    public function addCentroMedicos(MedicalCenter $centroMedico): self
     {
         if (!$this->centrosMedicos->contains($centroMedico)) {
             $this->centrosMedicos->add($centroMedico);
