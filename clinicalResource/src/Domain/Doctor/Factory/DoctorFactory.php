@@ -31,7 +31,7 @@ class DoctorFactory
         $doctor->setMapWeb($mapWeb);
         $doctor->setNotes($notes);
         if ($medicalCenter) {
-            $doctor->addCentroMedico($medicalCenter);
+            $doctor->addCentroMedicos($medicalCenter);
         }
         if ($speciality) {
             $doctor->addSpeciality($speciality);
