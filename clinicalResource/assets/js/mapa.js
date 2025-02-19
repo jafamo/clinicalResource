@@ -82,7 +82,7 @@ function initMap() {
     marker = new google.maps.marker.AdvancedMarkerElement({
         position: defaultLocation,
         map: map,
-        title: "Ubicación seleccionada"
+        title: "Init map"
     });
 
     // Autocompletado de direcciones

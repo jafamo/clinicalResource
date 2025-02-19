@@ -29,8 +29,12 @@ class MedicalCenterCrudController extends AbstractCrudController
         if ($pageName === Crud::PAGE_EDIT || $pageName === Crud::PAGE_NEW) {
             $doctor = AssociationField::new('medicos', 'Doctors') // Relación con MedicalCenter
             ->setCrudController(DoctorCrudController::class); // Opcional: Controlador específico para MedicalCenter
+            $description = TextField::new('description');
+            $address = TextField::new('address');
         } else {
             $doctor = '';
+            $description = '';
+            $address = '';
         }
         return [
             FormField::addTab('Medical Center Information')
@@ -38,16 +42,14 @@ class MedicalCenterCrudController extends AbstractCrudController
                 ->setHelp('Doctor information is preferred'),
             FormField::addColumn(4),
             TextField::new('name'),
-            TextField::new('description'),
-            TextField::new('address'),
+            $description,
+            $address,
             TextField::new('phoneGeneric'),
             TextField::new('email'),
             FormField::addColumn(8),
-
             'mapLink',
             $doctor,
         ];
-
     }
 
     public function configureCrud(Crud $crud): Crud
