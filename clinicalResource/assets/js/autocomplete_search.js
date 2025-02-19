@@ -96,10 +96,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     resultsContainer.innerHTML = '';
 
                     if (data.length === 0) {
-                        resultsContainer.textContent = 'No se encontraron resultados.';
+                        resultsContainer.textContent = 'Not found results.';
                         updateMarkers([]);
                         return;
                     }
+
+                    // ID único para el grupo de acordeones
+                    const accordionGroupId = "doctorAccordion";
 
                     data.forEach((doctor, index) => {
                         const option = document.createElement('div');
@@ -107,6 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         // Identificador único para cada acordeón
                         const accordionId = `accordion-${index}`;
+                        const headingId = `heading-${index}`;
 
                         let details = '';
 
@@ -124,36 +128,33 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
 
                         if (doctor.medicalCenter || doctor.address || doctor.genericPhone) {
-                            details += `<hr> <strong>Medical Center</strong> <br>`;
+                            details += `<hr> <i class="fa-regular fa-hospital"></i> <strong>Medical Center</strong> <br>`;
 
                             if (doctor.medicalCenter) {
                                 details += `<strong>Name:</strong> ${doctor.medicalCenter} <br>`;
                             }
                             if (doctor.address) {
-                                details += `<strong>Address:</strong> ${doctor.address} <br>`;
+                                details += `<i class="fa-regular fa-address-book"></i><strong>Address:</strong> ${doctor.address} <br>`;
                             }
                             if (doctor.genericPhone) {
-                                details += `<strong>Phone Medical Center:</strong> ${doctor.genericPhone} <br>`;
+                                details += `<i class="fa-solid fa-phone"></i><strong>Phone Medical Center:</strong> ${doctor.genericPhone} <br>`;
                             }
                         }
 
-
                         // Contenido del doctor + botón para abrir el acordeón
                         option.innerHTML = `
-                            <div class="accordion" id="accordionExample">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="heading${index}">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#${accordionId}" aria-expanded="false" aria-controls="${accordionId}">
-                                            <i class="bi bi-geo-alt me-2"></i> ${doctor.name} - ${doctor.specialty}
-                                            <a href="https://www.google.es" target="_blank" class="ms-2">
-                                                <i class="bi bi-globe"></i>
-                                            </a>
-                                        </button>
-                                    </h2>
-                                    <div id="${accordionId}" class="accordion-collapse collapse" aria-labelledby="heading${index}" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">     
-                                        ${details}                                                                                                            
-                                        </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="${headingId}">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#${accordionId}" aria-expanded="false" aria-controls="${accordionId}">
+                                        <i class="fa-regular fa-eye me-2"></i> ${doctor.name} - ${doctor.specialty}
+                                        <a href="https://www.google.es" target="_blank" class="ms-2">
+                                            <i class="fa-regular fa-circle-down"></i>
+                                        </a>
+                                    </button>
+                                </h2>
+                                <div id="${accordionId}" class="accordion-collapse collapse" aria-labelledby="${headingId}" data-bs-parent="#${accordionGroupId}">
+                                    <div class="accordion-body">     
+                                    ${details}                                                                                                            
                                     </div>
                                 </div>
                             </div>
@@ -161,7 +162,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         resultsContainer.appendChild(option);
                     });
-                    //actualizar el mapa con las marcas de los doctores
+
+                    // Agregar el contenedor principal del acordeón al HTML
+                    if (resultsContainer.childElementCount > 0) {
+                        resultsContainer.innerHTML = `<div class="accordion" id="doctorAccordion">${resultsContainer.innerHTML}</div>`;
+                    }
+
+                    // Actualizar el mapa con las marcas de los doctores
                     updateMarkers(data);
                 })
                 .catch(error => console.error('Error fetching doctors:', error));
