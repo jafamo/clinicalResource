@@ -21,12 +21,28 @@ class SpecialityCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
+        $spezializationName = TextField::new('name')->setLabel('Specialization Name');
+        $parentSpecialist = AssociationField::new('parent')->setLabel('Parent Specialization');
+
+        if ($pageName === Crud::PAGE_EDIT || $pageName === Crud::PAGE_NEW) {
+            $parentSpecialist = AssociationField::new('parent')
+                ->setLabel('Parent Specialization')
+                ->setFormTypeOptions([
+                    'by_reference' => true, // Asegura que Doctrine maneja correctamente la relación
+                    'expanded' => true,
+                    'row_attr' => ['style' => 'display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;'],
+                    'attr' => ['data-ea-widget' => 'ea-autocomplete'], // Fuerza el uso del widget correcto
+                ]);
+        } else {
+
+        }
+
         return [
             FormField::addFieldset('Specialist')
                 ->setIcon('fa fa-user')->addCssClass('optional')
                 ->setHelp('If you want create Parent Specialization, you need to create a Specialization Name with  Parent Specialization empty'),
-            TextField::new('name')->setLabel('Specialization Name'),
-            AssociationField::new('parent')->setLabel('Parent Specialization'),
+            $parentSpecialist,
+            $spezializationName
         ];
     }
 

@@ -83,7 +83,7 @@ class DoctorRepository extends ServiceEntityRepository implements DoctorReposito
             'd.id, d.name, d.surname, d.phone, d.openingTimes, d.linkWeb, d.mapWeb',
             's.name AS specialty',
             'mc.name AS medicalCenter, mc.address AS address, mc.phoneGeneric AS genericPhone',
-            'sub.name AS subspecialty' // Incluye la subespecialidad
+            'COALESCE(sub.name, s.name) AS subspecialty' // Si no hay sub, usar el nombre de la especialidad
         )
             ->leftJoin('d.specialities', 's') // Relación Many-to-Many con Speciality
             ->leftJoin('d.centrosMedicos', 'mc') // Relación Many-to-Many con MedicalCenter
@@ -91,14 +91,17 @@ class DoctorRepository extends ServiceEntityRepository implements DoctorReposito
             ->leftJoin('s.medicos', 'doctor') // Relación con los doctores (Many-to-Many), alias cambiado a 'doctor'
         ;
 
+
+
         // Construir la condición de búsqueda
         if ($criteria) {
-            $qb->where(
+            $qb->andWhere(
                 $qb->expr()->orX(
-                    $qb->expr()->like('LOWER(d.name)', ':criteria'), // Buscar por el nombre del doctor
-                    $qb->expr()->like('LOWER(s.name)', ':criteria'), // Buscar por specialty
-                    $qb->expr()->like('LOWER(sub.name)', ':criteria'), // Buscar por subspecialty
-                    $qb->expr()->like('LOWER(mc.name)', ':criteria') // Buscar por medical center
+                    $qb->expr()->like('LOWER(d.name)', ':criteria'), // Buscar por nombre del doctor
+                    $qb->expr()->like('LOWER(d.surname)', ':criteria'), // Buscar por surname del doctor
+                    $qb->expr()->like('LOWER(s.name)', ':criteria'), // Buscar por especialidad
+                    $qb->expr()->like('LOWER(sub.name)', ':criteria'), // Buscar por subespecialidad
+                    $qb->expr()->like('LOWER(mc.name)', ':criteria')  // Buscar por centro médico
                 )
             )
                 ->setParameter('criteria', '%' . strtolower($criteria) . '%');
