@@ -22,7 +22,7 @@ class SpecialityCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         $spezializationName = TextField::new('name')->setLabel('Specialization Name');
-        $parentSpecialist = AssociationField::new('parent')->setLabel('Parent Specialization');
+
 
         if ($pageName === Crud::PAGE_EDIT || $pageName === Crud::PAGE_NEW) {
             $parentSpecialist = AssociationField::new('parent')
@@ -34,7 +34,7 @@ class SpecialityCrudController extends AbstractCrudController
                     'attr' => ['data-ea-widget' => 'ea-autocomplete'], // Fuerza el uso del widget correcto
                 ]);
         } else {
-
+            $parentSpecialist = AssociationField::new('parent')->setLabel('Parent Specialization');
         }
 
         return [
