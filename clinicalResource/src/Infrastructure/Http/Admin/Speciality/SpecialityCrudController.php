@@ -34,7 +34,7 @@ class SpecialityCrudController extends AbstractCrudController
                     'attr' => ['data-ea-widget' => 'ea-autocomplete'], // Fuerza el uso del widget correcto
                 ]);
         } else {
-
+            $parentSpecialist = AssociationField::new('parent')->setLabel('Parent Specialization');
         }
 
         return [

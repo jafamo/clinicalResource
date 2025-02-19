@@ -36,7 +36,7 @@ import './js/autocomplete_search.js';
 
 // Assets CSS
 
-import './vendor/bootstrap-icons/bootstrap-icons.css';
+import './vendor/bootstrap-icons/font/bootstrap-icons.css';
 import './css/aos.css';
 //import './vendor/aos/aos.css';
 import './css/glightbox.css';
