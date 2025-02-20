@@ -36,7 +36,8 @@ import './js/autocomplete_search.js';
 
 // Assets CSS
 
-import './vendor/bootstrap-icons/font/bootstrap-icons.css';
+
+import './vendor/bootstrap-icons/font/bootstrap-icons.min.css';
 import './css/aos.css';
 //import './vendor/aos/aos.css';
 import './css/glightbox.css';
@@ -51,7 +52,6 @@ import '../assets/css/aos.css';
 import '../assets/css/glightbox.css';
 import '../assets/css/swiper-bundle.min.css';
 import '../assets/css/animacion_result_search_acordeon.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 //
 // import {Chart} from "./vendor/chart.js/chart.js.index.js";
