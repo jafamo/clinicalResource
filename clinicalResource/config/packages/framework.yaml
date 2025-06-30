@@ -2,7 +2,12 @@
 framework:
     secret: '%env(APP_SECRET)%'
     csrf_protection: true
-
+    router:
+        default_uri: '%env(APP_URL)%'  
+    trusted_proxies: '127.0.0.1,REMOTE_ADDR'
+    trusted_hosts: 
+        - '^medical\.jfarinos\.keenetic\.pro$'
+        - '^jafamo\.ddns\.net$'
     # Note that the session will be started ONLY if you read or write from it.
     session: true
 
